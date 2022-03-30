@@ -6,12 +6,13 @@ const allSections = document.querySelector('.main-content');
 function PageTransitions(){
     // Button click active class
     for(let i = 0; i < sectBtn.length; i++){
-        sectBtn[i].addEventListener('click', function() {
-            let currentBtn = document.querySelectorAll('.active-btn');
-            currentBtn[0].className = currentBtn[0].className.replace('.active-btn', '');
-            this.className += 'active=btn';
-        })
-    }
+        sectBtn.forEach((e) => {
+            e.addEventListener('click', () => {
+              sectBtn.forEach((e) => e.classList.remove('active-btn'))
+              e.classList.add('active-btn')
+            });
+          });
+    };
 
     // Sections Active
     allSections.addEventListener('click', (e) =>{
@@ -34,6 +35,12 @@ function PageTransitions(){
         }
     });
 
+    // Toggle Dark Mode
+    const themeBtn = document.querySelector('.theme-btn');
+    themeBtn.addEventListener('click', () =>{
+        let element = document.body;
+        element.classList.toggle('light-mode');
+    });
 }
 
 PageTransitions();
